@@ -1,6 +1,5 @@
 import exceptions.RequestFailureException;
 import exceptions.RequestInterruptedException;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import price.factories.DeliveryPriceCalculatorFactory;
 
 
@@ -12,10 +11,7 @@ public class Main {
 
     public void run() throws RequestFailureException {
         try {
-            new ClassPathXmlApplicationContext("spring-config.xml")
-                    .getBean(DeliveryPriceCalculatorFactory.class)
-                    .create()
-                    .request();
+            new DeliveryPriceCalculatorFactory().create().request();
         } catch (RequestInterruptedException e) {
             System.out.print("bye");
         }
